@@ -56,8 +56,8 @@
   },
   {
     "prefix": "opal",
-    "owl": "https://data.moncollectifemploi.fr/ontology",
-    "url": "https://data.moncollectifemploi.fr/ontology#"
+    "owl": "https://data.moncollectifemploi.fr/public/ontology",
+    "url": "https://data.moncollectifemploi.fr/public/ontology#"
   },
   {
     "prefix": "aurba",

@@ -5,7 +5,6 @@ const ontologies = require('../config/ontologies.json');
 
 module.exports = {
   mixins: [InferenceService],
-  dependencies: ['static'],
   settings: {
     baseUrl: CONFIG.HOME_URL,
     ontologies: ontologies
