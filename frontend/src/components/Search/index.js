@@ -272,7 +272,6 @@ const Search = ({
     })
     trackSiteSearch({ keyword: JSON.stringify(searchSynthesys),count:results.length})
     // console.log('trackSiteSearch');
-    console.log('results',results);
     setResults(results);
   }
 

@@ -127,7 +127,6 @@ const reducer = (state = initialState, action = {}) => {
           .filter((value, index, self) => self.indexOf(value) === index)
           .map(result => state.resourceValues['structures'].find(resource => resource.id === result))
           .filter(value=>value!=undefined);
-      console.log('resultsByStructure',resultsByStructure);
       return {
         ...state,
         results: action.results,
