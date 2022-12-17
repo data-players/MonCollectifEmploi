@@ -78,6 +78,9 @@ const useStyles = makeStyles(theme => ({
     marginTop: -16,
     color: theme.color.grey75,
     fontSize: '12px !important'
+  },
+  imgStructure: {
+    objectFit: 'contain'
   }
 }))
 
@@ -89,7 +92,7 @@ const Structure = ({ loading, programs, structure, loadData }) => {
     loadData('programs');
     loadData('structures');
   }, [])
-  // console.log('structure',structure);
+  console.log('structure',structure);
   structure['opal:socialNetworks']=structure['opal:socialNetworks']?Array.isArray(structure['opal:socialNetworks'])?structure['opal:socialNetworks']:[structure['opal:socialNetworks']]:undefined
   return (
     <>
@@ -106,8 +109,8 @@ const Structure = ({ loading, programs, structure, loadData }) => {
               <AppBar/>
               <Container className={classes.mainContainer} maxWidth="sm">
                 <Box className={classes.imageContainer}>
-                  { structure["pair:depictedBy"] &&
-                    <img src={structure["pair:depictedBy"]} style="object-fit: contain" alt={`logo ${structure.label}`} />
+                  {  structure["pair:depictedBy"] &&
+                    <img src={structure["pair:depictedBy"]} className={classes.imgStructure} alt={`logo ${structure.label}`} />
                   }
                 </Box>
                 <Typography component="h1" className={classes.title}>
