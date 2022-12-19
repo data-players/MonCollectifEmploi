@@ -13,6 +13,7 @@ module.exports = {
     baseUrl: CONFIG.HOME_URL,
     baseDir: path.resolve(__dirname, '..'),
     jsonContext: urlJoin(CONFIG.HOME_URL,'context.json'),
+    // jsonContext: urlJoin('https://data.archipelago.data-players.com/context.json'),
     triplestore: {
       url: CONFIG.SPARQL_ENDPOINT,
       user: CONFIG.JENA_USER,
@@ -24,9 +25,9 @@ module.exports = {
       port: CONFIG.PORT,
       routes: [
         {
-          path: '/public/ontology',
+          path: '/ontology',
           use: [
-            ApiGatewayService.serveStatic('./ontology.ttl', {
+            ApiGatewayService.serveStatic('./public/ontology.ttl', {
               setHeaders: res => {
                 res.setHeader('Access-Control-Allow-Origin', '*');
                 res.setHeader('Content-Type', 'text/turtle; charset=utf-8');
@@ -35,9 +36,9 @@ module.exports = {
           ]
         },
         {
-           path: '/public/context.json',
+           path: '/context.json',
            use: [
-             ApiGatewayService.serveStatic('./context.json', {
+             ApiGatewayService.serveStatic('./public/context.json', {
                setHeaders: res => {
                  res.setHeader('Access-Control-Allow-Origin', '*');
                  res.setHeader('Content-Type', 'application/json; charset=utf-8');
