@@ -12,7 +12,7 @@ module.exports = {
   settings: {
     baseUrl: CONFIG.HOME_URL,
     baseDir: path.resolve(__dirname, '..'),
-    jsonContext: urlJoin(CONFIG.HOME_URL,'public','context.json'),
+    jsonContext: urlJoin(CONFIG.HOME_URL,'context.json'),
     triplestore: {
       url: CONFIG.SPARQL_ENDPOINT,
       user: CONFIG.JENA_USER,
@@ -26,7 +26,7 @@ module.exports = {
         {
           path: '/public/ontology',
           use: [
-            ApiGatewayService.serveStatic('./public/ontology.ttl', {
+            ApiGatewayService.serveStatic('./ontology.ttl', {
               setHeaders: res => {
                 res.setHeader('Access-Control-Allow-Origin', '*');
                 res.setHeader('Content-Type', 'text/turtle; charset=utf-8');
@@ -37,7 +37,7 @@ module.exports = {
         {
            path: '/public/context.json',
            use: [
-             ApiGatewayService.serveStatic('./public/context.json', {
+             ApiGatewayService.serveStatic('./context.json', {
                setHeaders: res => {
                  res.setHeader('Access-Control-Allow-Origin', '*');
                  res.setHeader('Content-Type', 'application/json; charset=utf-8');
