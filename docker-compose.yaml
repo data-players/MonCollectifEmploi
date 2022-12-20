@@ -38,7 +38,8 @@ services:
       - 'SEMAPPS_HOME_URL=http://localhost:3000/'
       - SEMAPPS_OIDC_ISSUER=https://login.lescommuns.org/auth/realms/master/
       - SEMAPPS_OIDC_CLIENT_ID=semapps
-      - 'SEMAPPS_REDIS_URL=redis://redis:6379/0'
+      - SEMAPPS_REDIS_CACHE_HOST=redis
+      - SEMAPPS_REDIS_CACHE_PASSW=passw
       - REPLYTO_EMAIL=${REPLYTO_EMAIL}
       - REPLYTO_LABEL=${REPLYTO_LABEL}
       - MJ_APIKEY_PUBLIC=${MJ_APIKEY_PUBLIC}
