@@ -16,6 +16,7 @@ export default {
   dataModel: {
     types: ['opal:Program'],
     list: {
+      fetchContainer: true,
       dereference: ['pair:hasLocation/pair:hasPostalAddress'],
       forceArray: [
         'opal:hasBusinessCreationGoals',
