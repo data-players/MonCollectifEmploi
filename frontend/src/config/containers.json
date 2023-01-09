@@ -11,6 +11,7 @@
   },
   "programs": {
     "slug": "programs",
+    "mode": "LDP",
     "name": "programs",
     "resource": "opal:Program"
   },
