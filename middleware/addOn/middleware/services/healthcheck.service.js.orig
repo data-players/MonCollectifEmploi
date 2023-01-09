@@ -2,7 +2,11 @@ const Fs = require('fs')
 const http = require("http");
 const { MoleculerError } = require("moleculer").Errors;
 
+<<<<<<< HEAD
+const dir = "../localData/";
+=======
 const dir = "../../localData/";
+>>>>>>> 2148660f9221c800522f36fae6f61082cf58bf5c
 
 module.exports = {
   name: "healthcheck",

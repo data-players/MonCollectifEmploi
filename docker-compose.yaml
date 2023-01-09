@@ -30,6 +30,7 @@ services:
       - './data/middleware/jwt:/archipelago/middleware/jwt'
       - './data/middleware/uploads:/archipelago/middleware/uploads'
       - './middleware/addOn:/archipelago/middleware/addOn'
+      - './data/fuseki/databases/localData:/localData'
     environment:
       - 'SEMAPPS_SPARQL_ENDPOINT=http://fuseki:3030/'
       - SEMAPPS_MAIN_DATASET=localData
