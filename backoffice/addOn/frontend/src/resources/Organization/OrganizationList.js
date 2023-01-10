@@ -13,8 +13,9 @@ import {ReferenceField} from '@semapps/field-components';
 import {
   Datagrid,
   TextField,
-  ShowButton
+  EditButton
 } from 'react-admin';
+
 
 import OrganizationFilterSidebar from './OrganizationFilterSidebar';
 
@@ -29,23 +30,14 @@ const OrganizationList = props => {
         sort: { field: 'pair:label', order: 'DESC' },
         perPage: 25,
         list: (
-          // <SimpleList
-          //   primaryText={record => record['pair:label']}
-          //   secondaryText={record => record['pair:description']}
-          //   leftAvatar={record => (
-          //     <Avatar src={record['pair:depictedBy']} width="100%">
-          //       <HomeIcon />
-          //     </Avatar>
-          //   )}
-          //   linkType="edit"
-          // />
+
           <Datagrid>
               <TextField source="pair:label" />
               <TextField source="pair:description" />
               <ReferenceField reference="DataSource" source="aurba:hasDataSource">
                 <TextField source="pair:label" />
               </ReferenceField>
-              <ShowButton />
+              <EditButton />
           </Datagrid>
         )
       },

@@ -21,7 +21,7 @@ services:
       start_period: 5s
 
   middleware:
-    image: dataplayers/archipelago-middleware:0.6
+    image: dataplayers/archipelago-middleware:0.7
     depends_on:
       fuseki:
         condition: service_healthy
@@ -52,14 +52,14 @@ services:
       - '3000:3000'
 
   backoffice:
-    image: dataplayers/archipelago-frontend:0.6
+    image: dataplayers/archipelago-frontend:0.7
     environment:
       - 'REACT_APP_MIDDLEWARE_URL=http://localhost:3000/'
       - REACT_APP_MAPBOX_ACCESS_TOKEN=${REACT_APP_MAPBOX_ACCESS_TOKEN}
       - PORT=4000
     volumes:
       - ./backoffice/addOn:/archipelago/frontend/addOn
-    command: bash -c "cp -r ./addOn/frontend/* . && yarn install && yarn start"
+    command: bash -c "cp -r ./addOn/frontend/* . && yarn install && yarn copy-and-start-addOn"
     networks:
       - semapps
     ports:

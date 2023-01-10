@@ -41,13 +41,13 @@ export const ProgramEdit = props => {
 
 
     if ( hasJobSearchGoals && hasBusinessCreationGoals && hasTrainingGoals && hasFindingHelpGoals){
-      console.error('un des 4 champs doit être rempli');
-      // errors= {
-      //   'opal:hasJobSearchGoals':'oneOfFor',
-      //   'opal:hasBusinessCreationGoals':'oneOfFori',
-      //   'opal:hasTrainingGoals':'oneOfFor',
-      //   'opal:hasFindingHelpGoals':'oneOfFor'
-      // }
+      // console.error('un des 4 champs doit être rempli');
+      // // errors= {
+      // //   'opal:hasJobSearchGoals':'oneOfFor',
+      // //   'opal:hasBusinessCreationGoals':'oneOfFori',
+      // //   'opal:hasTrainingGoals':'oneOfFor',
+      // //   'opal:hasFindingHelpGoals':'oneOfFor'
+      // // }
       return 'un des 4 champs doit être rempli';
     }
     else{
@@ -77,6 +77,11 @@ export const ProgramEdit = props => {
   if ( newOrganization && organization !== newOrganization ) {
     organization = newOrganization;
   }
+
+  const record = controllerProps.record
+  // console.log('record',record);
+  const lock = record?.['aurba:externalSource']!=undefined;
+  const deleteable = !lock || record?.['aurba:externalDeleted']!=undefined;
 
   return (
   <Edit title={<Title />} {...props} >
@@ -149,6 +154,12 @@ export const ProgramEdit = props => {
           >
             <SelectInput optionText="pair:label" allowEmpty resettable />
           </ReferenceInput>
+        }
+        <ReferenceInput reference="DataSource" fullWidth source="aurba:hasDataSource" allowEmpty disabled={lock}>
+          <SelectInput optionText="pair:label" disabled={lock}/>
+        </ReferenceInput>
+        {lock &&
+          <BooleanInput source="aurba:externalDeleted" disabled={true} />
         }
       </FormTab>
       <FormTab label="Objectifs">

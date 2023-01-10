@@ -57,7 +57,8 @@ export default {
         'opal:hasFindingHelpGoals': 'Besoin d\'aide',
         'opal:noIdea': 'Je ne sais pas ce que je veux faire',
         'opal:hasContactPerson': 'Personne à contacter', /*ContactPerson*/
-        'pair:offers': 'Lieux de formation' /*TrainingSite*/
+        'pair:offers': 'Lieux de formation', /*TrainingSite*/
+        'aurba:hasDataSource' : 'source',
       }
     }
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, makeStyles } from '@material-ui/core';
-import { ReferenceFilter } from '@semapps/list-components';;
+import { ReferenceFilter } from '@semapps/list-components';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -24,9 +24,10 @@ const ProgramFilterSidebar = () => {
     <Card className={classes.card}>
       <CardContent className={classes.cardContent}>
         <ReferenceFilter
-          reference="Organization"
-          source="pair:offeredBy"
-          // inverseSource=""
+          label="Source de données"
+          reference="DataSource"
+          source="aurba:hasDataSource"
+          inverseSource="aurba:dataSourceOf"
           sort={{ field: 'pair:label', order: 'DESC' }}
           limit={100}
         />
