@@ -101,14 +101,15 @@ export const ProgramEdit = props => {
               return value && value.length > 1
             }}/>
         </ReferenceInput>
-        <MarkdownInput source="pair:description" multiline fullWidth />
-        <NumberInput source="opal:minimumAge" fullWidth />
-        <NumberInput source="opal:maximumAge" fullWidth />
+        <MarkdownInput source="pair:description" multiline fullWidth readOnly={lock}/>
+        <NumberInput source="opal:minimumAge" fullWidth disabled={lock}/>
+        <NumberInput source="opal:maximumAge" fullWidth disabled={lock}/>
         <ReferenceArrayInput
           source="opal:hasDegreeLevel"
           reference="DegreeLevel"
           fullWidth
           helperText="Sélectionner tous les éléments éligibles au programme"
+          disabled={lock}
         >
           <SelectArrayInput optionText="pair:label" />
         </ReferenceArrayInput>
@@ -117,22 +118,23 @@ export const ProgramEdit = props => {
           reference="Gender"
           fullWidth
           helperText="Sélectionner tous les éléments éligibles au programme"
+          disabled={lock}
         >
           <SelectArrayInput optionText="pair:label" />
         </ReferenceArrayInput>
-        <BooleanInput source="opal:rqth" defaultValue={false} fullWidth />
-        <BooleanInput source="opal:poleEmploi" defaultValue={false} fullWidth />
-        <TextInput source="opal:otherInfos" fullWidth />
-        <TextInput source="opal:duration" fullWidth />
-        <ArrayInput source="opal:startingDates">
+        <BooleanInput source="opal:rqth" defaultValue={false} fullWidth disabled={lock} />
+        <BooleanInput source="opal:poleEmploi" defaultValue={false} fullWidth disabled={lock} />
+        <TextInput source="opal:otherInfos" fullWidth disabled={lock} />
+        <TextInput source="opal:duration" fullWidth disabled={lock} />
+        <ArrayInput source="opal:startingDates" disabled={lock} >
           <SimpleFormIterator>
             <DateInput label="Dates de démarrage"/>
           </SimpleFormIterator>
         </ArrayInput>
-        <NumberInput source="opal:numberOfParticipants" fullWidth />
-        <BooleanInput source="opal:financialParticipation" defaultValue={false} fullWidth />
-        <TextInput type="url" source="opal:registerLink" fullWidth />
-        <ReferenceArrayInput source="opal:hasTrainingMode" reference="TrainingMode" fullWidth validate={[required()]}>
+        <NumberInput source="opal:numberOfParticipants" fullWidth disabled={lock} />
+        <BooleanInput source="opal:financialParticipation" defaultValue={false} fullWidth disabled={lock} />
+        <TextInput type="url" source="opal:registerLink" fullWidth disabled={lock} />
+        <ReferenceArrayInput source="opal:hasTrainingMode" reference="TrainingMode" fullWidth validate={[required()]} disabled={lock}>
           <SelectArrayInput optionText="pair:label" />
         </ReferenceArrayInput>
         { organization &&
@@ -141,6 +143,7 @@ export const ProgramEdit = props => {
             reference="ContactPerson"
             fullWidth
             filter={{"pair:affiliates":organization}}
+            disabled={lock}
           >
             <SelectInput optionText={record => record["pair:firstName"] + ' ' + record["pair:lastName"]} allowEmpty resettable />
           </ReferenceInput>
@@ -151,6 +154,7 @@ export const ProgramEdit = props => {
             reference="TrainingSite"
             fullWidth
             filter={{"pair:offeredBy":organization}}
+            disabled={lock}
           >
             <SelectInput optionText="pair:label" allowEmpty resettable />
           </ReferenceInput>
@@ -163,19 +167,19 @@ export const ProgramEdit = props => {
         }
       </FormTab>
       <FormTab label="Objectifs">
-        <ReferenceArrayInput source="opal:hasJobSearchGoals" reference="JobSearchGoal" fullWidth validate={validateMultiple}>
+        <ReferenceArrayInput source="opal:hasJobSearchGoals" reference="JobSearchGoal" fullWidth validate={validateMultiple} disabled={lock} >
           <SelectArrayInput optionText="pair:label" />
         </ReferenceArrayInput>
-        <ReferenceArrayInput source="opal:hasBusinessCreationGoals" reference="BusinessCreationGoal" fullWidth validate={validateMultiple}>
+        <ReferenceArrayInput source="opal:hasBusinessCreationGoals" reference="BusinessCreationGoal" fullWidth validate={validateMultiple} disabled={lock} >
           <SelectArrayInput optionText="pair:label" />
         </ReferenceArrayInput>
-        <ReferenceArrayInput source="opal:hasTrainingGoals" reference="TrainingGoal" fullWidth validate={validateMultiple}>
+        <ReferenceArrayInput source="opal:hasTrainingGoals" reference="TrainingGoal" fullWidth validate={validateMultiple} disabled={lock} >
           <SelectArrayInput optionText="pair:label" />
         </ReferenceArrayInput>
-        <ReferenceArrayInput source="opal:hasFindingHelpGoals" reference="FindingHelpGoal" fullWidth validate={validateMultiple}>
+        <ReferenceArrayInput source="opal:hasFindingHelpGoals" reference="FindingHelpGoal" fullWidth validate={validateMultiple}disabled={lock} >
           <SelectArrayInput optionText="pair:label" />
         </ReferenceArrayInput>
-        <BooleanInput source="opal:noIdea" defaultValue={false} fullWidth validate={[required()]} />
+        <BooleanInput source="opal:noIdea" defaultValue={false} fullWidth validate={[required()]} disabled={lock}/>
       </FormTab>
     </TabbedForm>
   </Edit>

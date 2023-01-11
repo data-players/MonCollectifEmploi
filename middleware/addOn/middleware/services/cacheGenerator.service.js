@@ -34,8 +34,12 @@ module.exports = {
 
     },
     async 'ldp.resource.updated'(ctx) {
-      const { resourceUri } = ctx.params;
-      await cacheResourceRight(resourceUri, this.broker)
+      //need settimeout because cahe invalidation excution when ldp.resource.updated semapps ldp service
+      setTimeout(()=>{
+        const { resourceUri } = ctx.params;
+        await cacheResourceRight(resourceUri, this.broker)
+      }, 1000);
+
     },
     async 'webid.created'(ctx) {
 
