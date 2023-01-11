@@ -35,7 +35,7 @@ module.exports = {
     },
     async 'ldp.resource.updated'(ctx) {
       //need settimeout because cahe invalidation excution when ldp.resource.updated semapps ldp service
-      setTimeout(()=>{
+      setTimeout(async ()=>{
         const { resourceUri } = ctx.params;
         await cacheResourceRight(resourceUri, this.broker)
       }, 1000);
