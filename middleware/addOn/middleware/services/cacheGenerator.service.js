@@ -5,20 +5,20 @@ const cacheResourceRight = async (resourceUri, broker) => {
   const users = await broker.call('ldp.container.getUris', { containerUri: CONFIG.HOME_URL + 'persons' });
 
   for (var user of users) {
-    // console.log('RESOURCE CREATED',newData.id,user);
+    // console.log('______________________________cacheResourceRight hasright user',user);
     const hasRights = await broker.call('webacl.resource.hasRights', {
       resourceUri : resourceUri,
       rights: { read: true },
       webId : user
     });
-    // console.log('hasRights',hasRights);
   }
+  // console.log('______________________________cacheResourceRight hasright anon');
   const hasRights = await broker.call('webacl.resource.hasRights', {
     resourceUri : resourceUri,
     rights: { read: true },
     webId : 'anon'
   });
-
+  // console.log('______________________________cacheResourceRight resource',resourceUri);
   const resourceReadyCached =  await broker.call('ldp.resource.get', {
     resourceUri : resourceUri,
     webId : user
@@ -34,8 +34,10 @@ module.exports = {
 
     },
     async 'ldp.resource.updated'(ctx) {
+      // console.log('______________________________ldp.resource.updated');
       //need settimeout because cahe invalidation excution when ldp.resource.updated semapps ldp service
       setTimeout(async ()=>{
+        console.log('______________________________ldp.resource.updated timout');
         const { resourceUri } = ctx.params;
         await cacheResourceRight(resourceUri, this.broker)
       }, 1000);
