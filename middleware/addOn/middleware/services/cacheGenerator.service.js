@@ -21,6 +21,8 @@ const cacheResourceRight = async (resourceUri, broker) => {
   // console.log('______________________________cacheResourceRight resource',resourceUri);
   const resourceReadyCached =  await broker.call('ldp.resource.get', {
     resourceUri : resourceUri,
+    forceSemantic: true,
+    accept:'application/ld+json',
     webId : user
   });
 };
