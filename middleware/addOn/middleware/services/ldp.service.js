@@ -6,8 +6,6 @@ const { botsContainer } = require('@semapps/mirror');
 const containers = require('../config/containers');
 const urlJoin = require('url-join');
 
-console.log('___________________________________ containers',containers);
-
 module.exports = {
   mixins: [LdpService, DocumentTaggerMixin],
   settings: {

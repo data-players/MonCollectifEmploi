@@ -18,7 +18,7 @@ const cacheResourceRight = async (resourceUri, broker) => {
     rights: { read: true },
     webId : 'anon'
   });
-  // console.log('______________________________cacheResourceRight resource',resourceUri);
+  console.log('______________________________cacheResourceRight resource',resourceUri);
   const resourceReadyCached =  await broker.call('ldp.resource.get', {
     resourceUri : resourceUri,
     forceSemantic: true,
@@ -36,7 +36,7 @@ module.exports = {
 
     },
     async 'ldp.resource.updated'(ctx) {
-      // console.log('______________________________ldp.resource.updated');
+      console.log('______________________________ldp.resource.updated');
       //need settimeout because cahe invalidation excution when ldp.resource.updated semapps ldp service
       setTimeout(async ()=>{
         console.log('______________________________ldp.resource.updated timout');
