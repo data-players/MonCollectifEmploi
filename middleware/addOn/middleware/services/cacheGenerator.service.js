@@ -36,13 +36,19 @@ module.exports = {
 
     },
     async 'ldp.resource.updated'(ctx) {
-      console.log('______________________________ldp.resource.updated');
-      //need settimeout because cahe invalidation excution when ldp.resource.updated semapps ldp service
-      setTimeout(async ()=>{
+      // console.log('______________________________ldp.resource.updated');
+      // //need settimeout because cahe invalidation excution when ldp.resource.updated semapps ldp service
+      // setTimeout(async ()=>{
+      //   console.log('______________________________ldp.resource.updated timout');
+      //   const { resourceUri } = ctx.params;
+      //   await cacheResourceRight(resourceUri, this.broker)
+      // }, 1000);
+
+
         console.log('______________________________ldp.resource.updated timout');
         const { resourceUri } = ctx.params;
         await cacheResourceRight(resourceUri, this.broker)
-      }, 1000);
+
 
     },
     async 'webid.created'(ctx) {
