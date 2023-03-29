@@ -10,8 +10,6 @@ services:
       - "3030:3030"
     expose:
       - "3030"
-    networks:
-      - semapps
     environment:
       ADMIN_PASSWORD: "admin"
     healthcheck:
@@ -21,7 +19,7 @@ services:
       start_period: 5s
 
   middleware:
-    image: dataplayers/archipelago-middleware:0.9
+    image: dataplayers/archipelago-middleware:0.6
     depends_on:
       fuseki:
         condition: service_healthy
@@ -46,22 +44,21 @@ services:
       - MJ_APIKEY_PUBLIC=${MJ_APIKEY_PUBLIC}
       - MJ_APIKEY_PRIVATE=${MJ_APIKEY_PRIVATE}
     command: bash -c "cp -r ./addOn/middleware/* . && yarn install && pm2-runtime 'yarn run dev'"
-    networks:
-      - semapps
     ports:
       - '3000:3000'
 
   backoffice:
-    image: dataplayers/archipelago-frontend:0.9
+    build:
+      context: ./../archipelago-build-dockerhub/
+      dockerfile: Dockerfile.front
     environment:
       - 'REACT_APP_MIDDLEWARE_URL=http://localhost:3000/'
       - REACT_APP_MAPBOX_ACCESS_TOKEN=${REACT_APP_MAPBOX_ACCESS_TOKEN}
       - PORT=4000
     volumes:
       - ./backoffice/addOn:/archipelago/frontend/addOn
-    command: bash -c "cp -r ./addOn/frontend/* . && yarn install && yarn run start-addOn"
-    networks:
-      - semapps
+      - ./../semapps:/semapps
+    command: bash -c "cp -r ./addOn/frontend/* . && yarn install && yarn run link-all && yarn run link-semapps-packages && yarn run start-addOn-link"
     ports:
       - '4000:4000'
 
@@ -71,8 +68,8 @@ services:
     volumes:
       - ./frontend:/app
     environment:
-      # - REACT_APP_MIDDLEWARE_URL=http://localhost:3000/
-      - REACT_APP_MIDDLEWARE_URL=https://data.moncollectifemploi.fr/
+      - REACT_APP_MIDDLEWARE_URL=http://localhost:3000/
+      # - REACT_APP_MIDDLEWARE_URL=https://data.moncollectifemploi.fr/
       - REACT_APP_MAPBOX_ACCESS_TOKEN=${REACT_APP_MAPBOX_ACCESS_TOKEN}
       - REACT_APP_CONTACT_EMAIL=${CONTACT_EMAIL}
       - REACT_APP_CONTACT_LABEL=${CONTACT_LABEL}
@@ -83,9 +80,8 @@ services:
       - "5001:5001"
     expose:
       - "5001"
-    networks:
-      - semapps
     command: bash -c "node -v && yarn install && yarn start"
+
 
   redis:
     image: redis
@@ -96,13 +92,6 @@ services:
       - REDIS_PASSWORD=passw
     ports:
       - "6379:6379"
-    networks:
-      - semapps
     volumes:
       - ./data/redis_data:/data
     command: ["redis-server", "--appendonly", "yes"]
-
-networks:
-  semapps:
-    name: bus_network
-    external: true

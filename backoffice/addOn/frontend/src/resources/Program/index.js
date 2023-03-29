@@ -59,6 +59,12 @@ export default {
         'opal:hasContactPerson': 'Personne à contacter', /*ContactPerson*/
         'pair:offers': 'Lieux de formation', /*TrainingSite*/
         'aurba:hasDataSource' : 'source',
+        'pair:firstName': 'Prénom',
+        'pair:lastName': 'Nom',
+        'pair:description': 'Description',
+        'pair:phone': 'Téléphone',
+        'pair:e-mail': 'E-mail',
+        'opal:civilityTitle': 'Titre de civilité',
       }
     }
   }

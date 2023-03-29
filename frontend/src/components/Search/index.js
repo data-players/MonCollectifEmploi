@@ -212,18 +212,18 @@ const Search = ({
             searchSynthesys[sv.field.label||sv.field.name]=sv.value.id;
             results = results.filter(result => {
               const structure = resourceValues['structures'].find(orga => orga['id'] === result["pair:offeredBy"]);
-              let trainingSite = resourceValues['trainingSites']?.find(site => site['id'] === result["pair:offers"]);
-              if ( ! trainingSite ) {
-                trainingSite = structure;
-              }
-              if ( ! trainingSite
-                || ! trainingSite['pair:hasLocation']
-                || ! trainingSite['pair:hasLocation']['pair:hasPostalAddress']
-                || ! trainingSite['pair:hasLocation']['pair:hasPostalAddress']['pair:addressZipCode']
+              // let trainingSite = resourceValues['trainingSites']?.find(site => site['id'] === result["pair:offers"]);
+              const location = result?.['pair:hasLocation']||structure?.['pair:hasLocation']
+              // if ( ! trainingSite ) {
+              //   trainingSite = structure;
+              // }
+              if ( ! location
+                || ! location['pair:hasPostalAddress']
+                || ! location['pair:hasPostalAddress']['pair:addressZipCode']
               ) {
                 return false
               }
-              if (trainingSite['pair:hasLocation']['pair:hasPostalAddress']['pair:addressZipCode'].substring(0,2) === sv.value.id.substring(0,2)) {
+              if (location['pair:hasPostalAddress']['pair:addressZipCode'].substring(0,2) === sv.value.id.substring(0,2)) {
                 return true
               } else {
                 return false

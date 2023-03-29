@@ -78,7 +78,7 @@ export default function Drawer({ openContactForm }) {
     >
       <CloseIcon className={classes.closeIcon} fontSize={'large'} />
       <Box className={classes.titleContainer}>
-        <Typography component="h1" variant="h4">Opaline</Typography>
+        <Typography component="h1" variant="h4">MonCollectifEmploi</Typography>
       </Box>
       <List>
         <ListItem button component={Link} to={'/'}>

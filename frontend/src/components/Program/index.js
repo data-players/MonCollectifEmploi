@@ -115,8 +115,8 @@ const Program = ({ loading, program, structure, trainingSite, loadData, openCont
   
   useEffect( () => { 
     loadData('programs');
-    loadData('structures');
-    loadData('trainingSites');
+    // loadData('structures');
+    // loadData('trainingSites');
   }, [])
   
   const [phoneDialogOpen, setPhoneDialogOpen] = React.useState(false);
@@ -131,12 +131,27 @@ const Program = ({ loading, program, structure, trainingSite, loadData, openCont
   };
   
   let location = null;
+  let phone = null;
+  let email = null;
   
-  if (trainingSite) {
-    location = trainingSite['pair:hasLocation'];
+  if (program["pair:hasLocation"]) {
+    location = program['pair:hasLocation'];
   } else if (structure) {
     location = structure["pair:hasLocation"];
   }
+
+  if (program["pair:e-mail"]) {
+    email = program['pair:e-mail'];
+  } else if (structure) {
+    email = structure["pair:e-mail"];
+  }
+
+  if (program["pair:phone"]) {
+    phone = program['pair:phone'];
+  } else if (structure) {
+    phone = structure["pair:phone"];
+  }
+  
   
   return (
     <>
@@ -216,9 +231,9 @@ const Program = ({ loading, program, structure, trainingSite, loadData, openCont
                     </Button>
                   </Stack>
                 </Container>
-                { structure["pair:phone"] &&
+                { phone &&
                   <PhoneDialog
-                    phone={structure["pair:phone"]}
+                    phone={phone}
                     open={phoneDialogOpen}
                     handleClose={handlePhoneDialogClose}
                   />

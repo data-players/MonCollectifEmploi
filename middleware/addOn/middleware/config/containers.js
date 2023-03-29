@@ -118,6 +118,7 @@ module.exports = [
   {
     path: '/programs',
     acceptedTypes: ['pair:Program'],
+    dereference: ['pair:hasLocation/pair:hasPostalAddress'],
     newResourcesPermissions: writePermissionsToAll
   },
   {

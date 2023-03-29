@@ -54,7 +54,11 @@ module.exports = {
       description: CONFIG.INSTANCE_DESCRIPTION
     },
     webacl: {
-      superAdmins: []
+      superAdmins: [
+        'http://localhost:3000/users/simon.louvet.zen',
+        'https://data.nantes.transiscope.org/users/simon.louvet.zen',
+        'https://data.moncollectifemploi.fr/persons/tech'
+      ]
     }
   }
 };

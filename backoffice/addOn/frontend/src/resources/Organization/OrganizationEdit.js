@@ -11,6 +11,7 @@ import {
   useEditController,
   BooleanInput
 } from 'react-admin';
+import { Typography , Box} from '@material-ui/core';
 
 import { MarkdownInput } from '@semapps/markdown-components'
 import { ReferenceInput, ReferenceArrayInput, MultiServerAutocompleteArrayInput} from '@semapps/input-components';
@@ -71,14 +72,19 @@ export const OrganizationEdit = props => {
         <ReferenceArrayInput label="programmes" reference="Program" source="pair:offers" filter={{"type":"opal:Program"}}>
           <MultiServerAutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1} fullWidth />
         </ReferenceArrayInput>
-
-        <ReferenceArrayInput label="lieux de fomation" reference="TrainingSite" source="pair:offers" filter={{"type":"opal:TrainingSite"}}>
+        <Box sx={{ p: 2, mb:2, borderStyle:"solid", borderWidth:"1px"}} fullWidth>
+          <Typography variant="h6">Lieux habituel de formation</Typography>
+          <PairLocationInput source="pair:hasLocation" fullWidth validate={[required()]} />
+          {record&&record['pair:hasLocation']&&
+              <TextInput source="pair:hasLocation.pair:hasPostalAddress.pair:addressZipCode" fullWidth disabled={true} />
+          }
+        </Box>
+        {/* <ReferenceArrayInput label="lieux de fomation" reference="TrainingSite" source="pair:offers" filter={{"type":"opal:TrainingSite"}}>
           <MultiServerAutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1} fullWidth />
-        </ReferenceArrayInput>
-        <ReferenceArrayInput label="personnes de contact" reference="ContactPerson" source="pair:affiliatesBy">
+        </ReferenceArrayInput> */}
+        {/* <ReferenceArrayInput label="personnes de contact" reference="ContactPerson" source="pair:affiliatesBy">
           <MultiServerAutocompleteArrayInput optionText="pair:lastName" shouldRenderSuggestions={value => value.length > 1} fullWidth />
-        </ReferenceArrayInput>
-
+        </ReferenceArrayInput> */}
         <ReferenceInput reference="DataSource" fullWidth source="aurba:hasDataSource" allowEmpty disabled={lock}>
           <SelectInput optionText="pair:label" disabled={lock}/>
         </ReferenceInput>

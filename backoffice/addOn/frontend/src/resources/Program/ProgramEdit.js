@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { TextInput } from "ra-ui-materialui";
+import { Typography , Box} from '@material-ui/core';
 import {
   ArrayInput,
   BooleanInput,
@@ -21,6 +22,7 @@ import Title from '../commons/Title';
 import Edit from "../../layout/edit/Edit";
 import { ReferenceArrayInput,ReferenceInput } from "@semapps/input-components";
 import { QuickAppendReferenceArrayField } from '@semapps/field-components';
+import PairLocationInput from '../../pair/PairLocationInput';
 
 export const ProgramEdit = props => {
   const controllerProps = useEditController(props);
@@ -53,21 +55,6 @@ export const ProgramEdit = props => {
     else{
       return undefined
     }
-    // if (!values.firstName) {
-    //     errors.firstName = 'The firstName is required';
-    // }
-    // if (!values.age) {
-    //     // You can return translation keys
-    //     errors.age = 'ra.validation.required';
-    // } else if (values.age < 18) {
-    //     // Or an object if the translation messages need parameters
-    //     errors.age = {
-    //         message: 'ra.validation.minValue',
-    //         args: { min: 18 }
-    //     };
-    // }
-    // console.log(errors);
-    // return errors
   };
 
   let organization = null;
@@ -137,7 +124,15 @@ export const ProgramEdit = props => {
         <ReferenceArrayInput source="opal:hasTrainingMode" reference="TrainingMode" fullWidth validate={[required()]} disabled={lock}>
           <SelectArrayInput optionText="pair:label" />
         </ReferenceArrayInput>
-        { organization &&
+        <Box sx={{ p: 2, mb:2, borderStyle:"solid", borderWidth:"1px"}} fullWidth>
+          <Typography variant="h6">Personne contact</Typography>
+          <TextInput source="opal:civilityTitle" fullWidth label="civilité" />
+          <TextInput source="pair:firstName" fullWidth validate={[required()]} label="prénom" />
+          <TextInput source="pair:lastName" fullWidth validate={[required()]} label="nom" />
+          <TextInput source="pair:phone" fullWidth label="téléphone" />
+          <TextInput source="pair:e-mail" fullWidth label="email"/>
+        </Box>
+        {/* { organization &&
           <ReferenceInput
             source="opal:hasContactPerson"
             reference="ContactPerson"
@@ -147,8 +142,15 @@ export const ProgramEdit = props => {
           >
             <SelectInput optionText={record => record["pair:firstName"] + ' ' + record["pair:lastName"]} allowEmpty resettable />
           </ReferenceInput>
-        }
-        { organization &&
+        } */}
+        <Box sx={{ p: 2, mb:2, borderStyle:"solid", borderWidth:"1px"}} fullWidth>
+          <Typography variant="h6">Lieux de formation</Typography>
+          <PairLocationInput source="pair:hasLocation" fullWidth validate={[required()]} label="adresse"/>
+          {record&&record['pair:hasLocation']&&
+              <TextInput source="pair:hasLocation.pair:hasPostalAddress.pair:addressZipCode" fullWidth disabled={true} label="code postale"/>
+          }
+        </Box>
+        {/* { organization &&
           <ReferenceInput
             source="pair:offers"
             reference="TrainingSite"
@@ -158,7 +160,7 @@ export const ProgramEdit = props => {
           >
             <SelectInput optionText="pair:label" allowEmpty resettable />
           </ReferenceInput>
-        }
+        } */}
         <ReferenceInput reference="DataSource" fullWidth source="aurba:hasDataSource" allowEmpty disabled={lock}>
           <SelectInput optionText="pair:label" disabled={lock}/>
         </ReferenceInput>
