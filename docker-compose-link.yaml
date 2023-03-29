@@ -29,6 +29,7 @@ services:
       - './data/middleware/uploads:/archipelago/middleware/uploads'
       - './middleware/addOn:/archipelago/middleware/addOn'
       - './data/fuseki/databases/localData:/localData'
+      - ./../semapps:/semapps
     environment:
       - 'SEMAPPS_SPARQL_ENDPOINT=http://fuseki:3030/'
       - SEMAPPS_MAIN_DATASET=localData
@@ -43,7 +44,7 @@ services:
       - REPLYTO_LABEL=${REPLYTO_LABEL}
       - MJ_APIKEY_PUBLIC=${MJ_APIKEY_PUBLIC}
       - MJ_APIKEY_PRIVATE=${MJ_APIKEY_PRIVATE}
-    command: bash -c "cp -r ./addOn/middleware/* . && yarn install && pm2-runtime 'yarn run dev'"
+    command: bash -c "cp -r ./addOn/middleware/* . && yarn install && yarn run install+pubish+link && pm2-runtime 'yarn run dev'"
     ports:
       - '3000:3000'
 
