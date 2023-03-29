@@ -75,9 +75,9 @@ export const OrganizationEdit = props => {
         </Box>
         <Box sx={{ p: 2, mb:2, borderStyle:"solid", borderWidth:"1px"}} fullWidth>
           <Typography variant="h6">Lieux habituel de formation ou accueil</Typography>
-          <PairLocationInput source="pair:hasLocation" fullWidth validate={[required()]} label={adresse}/>
+          <PairLocationInput source="pair:hasLocation" fullWidth validate={[required()]} label="adresse"/>
           {record&&record['pair:hasLocation']&&
-              <TextInput source="pair:hasLocation.pair:hasPostalAddress.pair:addressZipCode" fullWidth disabled={true} />
+              <TextInput source="pair:hasLocation.pair:hasPostalAddress.pair:addressZipCode" fullWidth disabled={true} label="code postal"/>
           }
         </Box>
         {/* <ReferenceArrayInput label="lieux de fomation" reference="TrainingSite" source="pair:offers" filter={{"type":"opal:TrainingSite"}}>
