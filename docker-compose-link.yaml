@@ -59,7 +59,7 @@ services:
     volumes:
       - ./backoffice/addOn:/archipelago/frontend/addOn
       - ./../semapps:/semapps
-    command: bash -c "cp -r ./addOn/frontend/* . && yarn install && yarn run link-all && yarn run link-semapps-packages && yarn run start-addOn-link"
+    command: bash -c "cp -r ./addOn/frontend/* . && yarn install && yarn run install+pubish+link && yarn run start-addOn-link"
     ports:
       - '4000:4000'
 

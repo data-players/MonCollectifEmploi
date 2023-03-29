@@ -5,7 +5,7 @@ const CONFIG = require('../config/config');
 const containers = require('../config/containers');
 const ApiGatewayService = require('moleculer-web');
 
-console.log('jsonContextl',urlJoin(CONFIG.HOME_URL, 'context.json'));
+// console.log('jsonContextl',urlJoin(CONFIG.HOME_URL, 'context.json'));
 
 module.exports = {
   mixins: [CoreService],
@@ -13,7 +13,7 @@ module.exports = {
     baseUrl: CONFIG.HOME_URL,
     baseDir: path.resolve(__dirname, '..'),
     // jsonContext: urlJoin(CONFIG.HOME_URL,'context.json'),
-    jsonContext: urlJoin('https://data.moncollectifemploi.fr/context.json'),
+    jsonContext: urlJoin('https://data.moncollectifemploi.fr/','context.json'),
     triplestore: {
       url: CONFIG.SPARQL_ENDPOINT,
       user: CONFIG.JENA_USER,

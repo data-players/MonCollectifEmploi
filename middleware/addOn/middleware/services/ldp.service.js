@@ -17,7 +17,7 @@ module.exports = {
       return urlJoin(CONFIG.FRONT_URL, containerPreferredView, encodeURIComponent(resourceUri), 'show')
     },
     defaultContainerOptions: {
-      jsonContext: urlJoin(CONFIG.HOME_URL,'context.json'),
+      jsonContext: urlJoin('https://data.moncollectifemploi.fr/','context.json'),
     }
   },
   hooksContainer: {
