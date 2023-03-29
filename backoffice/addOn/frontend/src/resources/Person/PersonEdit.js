@@ -1,6 +1,6 @@
 import React from 'react';
 import { SaveButton, SimpleForm, TextInput } from "ra-ui-materialui";
-import { Toolbar } from 'react-admin';
+import { Toolbar,BooleanInput } from 'react-admin';
 import Edit from "../../layout/edit/Edit";
 import { MarkdownInput } from '@semapps/markdown-components'
 import Title from "../commons/Title";
@@ -15,6 +15,7 @@ export const PersonEdit = props => (
   <Edit title={<Title />} {...props} >
     <SimpleForm toolbar={<NoDeleteToolBar />}  redirect="list" >
       <TextInput source="pair:label" fullWidth />
+      <BooleanInput source="semapps:cacheReady" />
       <MarkdownInput multiline source="pair:description" fullWidth />
     </SimpleForm>
   </Edit>

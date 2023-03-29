@@ -55,8 +55,8 @@ module.exports = {
     },
     webacl: {
       superAdmins: [
-        'http://localhost:3000/users/simon.louvet.zen',
-        'https://data.nantes.transiscope.org/users/simon.louvet.zen',
+        'http://localhost:3000/persons/simon.louvet.zen',
+        'https://data.nantes.transiscope.org/persons/simon.louvet.zen',
         'https://data.moncollectifemploi.fr/persons/tech'
       ]
     }
