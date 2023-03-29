@@ -32,6 +32,7 @@ module.exports = {
                 webId : webId,
                 accept:'application/ld+json'
               });
+              console.log('check user protection',user)
 
               if (user['semapps:cacheReady']=='false'){
                 throw new Error (`cet utilisateur a été créé recement créé et n'est pas encore opérationel, veillez réésayer dans quelques instants`)
