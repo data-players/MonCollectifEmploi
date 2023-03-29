@@ -47,10 +47,10 @@ export const OrganizationEdit = props => {
     <Edit title={<Title />} {...props} >
       <SimpleForm toolbar={<ToolBarCustom deleteable={deleteable}/>}>
         <TextInput source="pair:label" fullWidth validate={[required()]} disabled={lock}/>
-        <PairLocationInput source="pair:hasLocation" fullWidth validate={[required()]} disabled={lock}/>
+        {/* <PairLocationInput source="pair:hasLocation" fullWidth validate={[required()]} disabled={lock}/>
         {record&&record['pair:hasLocation']&&
             <TextInput source="pair:hasLocation.pair:hasPostalAddress.pair:addressZipCode" fullWidth disabled={true} />
-        }
+        } */}
         <MarkdownInput source="pair:description" multiline fullWidth validate={[required()]} readOnly={lock}/>
         {!lock &&
           <ImageInput source="pair:depictedBy" accept="image/*" disabled={lock}>
@@ -60,8 +60,6 @@ export const OrganizationEdit = props => {
         {lock &&
           <ImageField source="pair:depictedBy"/>
         }
-        <TextInput source="pair:phone" fullWidth disabled={lock}/>
-        <TextInput source="pair:e-mail" fullWidth disabled={lock}/>
         <ArrayInput source="opal:socialNetworks" disabled={lock}>
           <SimpleFormIterator>
             <TextInput type="url" label="url"/>
@@ -69,12 +67,15 @@ export const OrganizationEdit = props => {
         </ArrayInput>
         <TextInput source="pair:webPage" fullWidth disabled={lock}/>
         <TextInput source="aurba:siret" fullWidth disabled={lock}/>
-        <ReferenceArrayInput label="programmes" reference="Program" source="pair:offers" filter={{"type":"opal:Program"}}>
-          <MultiServerAutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1} fullWidth />
-        </ReferenceArrayInput>
+
         <Box sx={{ p: 2, mb:2, borderStyle:"solid", borderWidth:"1px"}} fullWidth>
-          <Typography variant="h6">Lieux habituel de formation</Typography>
-          <PairLocationInput source="pair:hasLocation" fullWidth validate={[required()]} />
+         <Typography variant="h6">Contact habituel pour les formations</Typography>
+         <TextInput source="pair:phone" fullWidth disabled={lock} label="telephone"/>
+         <TextInput source="pair:e-mail" fullWidth disabled={lock} label="email"/>
+        </Box>
+        <Box sx={{ p: 2, mb:2, borderStyle:"solid", borderWidth:"1px"}} fullWidth>
+          <Typography variant="h6">Lieux habituel de formation ou accueil</Typography>
+          <PairLocationInput source="pair:hasLocation" fullWidth validate={[required()]} label={adresse}/>
           {record&&record['pair:hasLocation']&&
               <TextInput source="pair:hasLocation.pair:hasPostalAddress.pair:addressZipCode" fullWidth disabled={true} />
           }
@@ -85,6 +86,9 @@ export const OrganizationEdit = props => {
         {/* <ReferenceArrayInput label="personnes de contact" reference="ContactPerson" source="pair:affiliatesBy">
           <MultiServerAutocompleteArrayInput optionText="pair:lastName" shouldRenderSuggestions={value => value.length > 1} fullWidth />
         </ReferenceArrayInput> */}
+        <ReferenceArrayInput label="programmes" reference="Program" source="pair:offers" filter={{"type":"opal:Program"}}>
+          <MultiServerAutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1} fullWidth />
+        </ReferenceArrayInput>
         <ReferenceInput reference="DataSource" fullWidth source="aurba:hasDataSource" allowEmpty disabled={lock}>
           <SelectInput optionText="pair:label" disabled={lock}/>
         </ReferenceInput>
