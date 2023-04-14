@@ -141,7 +141,7 @@ const middleware = (store) => (next) => (action) => {
       '@embed': '@never'
     };
 
-    console.log('container',container)
+    // console.log('container',container)
     if ( container.location === true ) {
       frame = {
         ...frame,
@@ -149,11 +149,11 @@ const middleware = (store) => (next) => (action) => {
       };
     }
 
-    console.log( 'frame',frame)
+    // console.log( 'frame',frame)
 
     const compactJson = await jsonld.frame(json, frame, { omitGraph: false });
 
-    console.log('compactJson',compactJson);
+    // console.log('compactJson',compactJson);
 
     const data = compactJson['@graph'];
 

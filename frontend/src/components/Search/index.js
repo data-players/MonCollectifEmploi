@@ -193,7 +193,7 @@ const Search = ({
     }
     // console.log('findResults',selectedValues);
     let results = [resourceValues['programs'],resourceValues['structures']].flat();
-    console.log(`resourceValues['programs']`,resourceValues['programs'])
+    // console.log(`resourceValues['programs']`,resourceValues['programs'])
     let searchSynthesys={};
     selectedValues.forEach(sv => {
       if (sv.field.type !== 'field-choice' || sv.value.type === 'no-choice') {
@@ -212,11 +212,11 @@ const Search = ({
           case 'location':
             searchSynthesys[sv.field.label||sv.field.name]=sv.value.id;
             results = results.filter(result => {
-              console.log('result',result)
+              // console.log('result',result)
               const structure = resourceValues['structures'].find(orga => orga['id'] === result["pair:offeredBy"]);
               // let trainingSite = resourceValues['trainingSites']?.find(site => site['id'] === result["pair:offers"]);
               const location = result?.['pair:hasLocation']||structure?.['pair:hasLocation']
-              console.log(`result?.['pair:hasLocation']`,result?.['pair:hasLocation'])
+              // console.log(`result?.['pair:hasLocation']`,result?.['pair:hasLocation'])
               // if ( ! trainingSite ) {
               //   trainingSite = structure;
               // }
