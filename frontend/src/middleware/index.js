@@ -134,18 +134,22 @@ const middleware = (store) => (next) => (action) => {
       json = await response.json();
     }
 
+
     let frame = {
       '@context': context,
       "@type": [container.resource],
       '@embed': '@never'
     };
 
+    console.log('container',container)
     if ( container.location === true ) {
       frame = {
         ...frame,
         ...getEmbedFrame(['pair:hasLocation/pair:hasPostalAddress'])
       };
     }
+
+    console.log( 'frame',frame)
 
     const compactJson = await jsonld.frame(json, frame, { omitGraph: false });
 

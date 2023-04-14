@@ -13,7 +13,8 @@
     "slug": "programs",
     "mode": "LDP",
     "name": "programs",
-    "resource": "opal:Program"
+    "resource": "opal:Program",
+    "location": true
   },
   "trainingSites": {
     "slug": "training-sites",
