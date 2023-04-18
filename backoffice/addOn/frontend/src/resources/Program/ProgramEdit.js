@@ -127,8 +127,8 @@ export const ProgramEdit = props => {
         <Box sx={{ p: 2, mb:2, borderStyle:"solid", borderWidth:"1px"}} fullWidth>
           <Typography variant="h6">Personne contact</Typography>
           <TextInput source="opal:civilityTitle" fullWidth label="civilité" />
-          <TextInput source="pair:firstName" fullWidth validate={[required()]} label="prénom" />
-          <TextInput source="pair:lastName" fullWidth validate={[required()]} label="nom" />
+          <TextInput source="pair:firstName" fullWidth label="prénom" />
+          <TextInput source="pair:lastName" fullWidth label="nom" />
           <TextInput source="pair:phone" fullWidth label="téléphone" />
           <TextInput source="pair:e-mail" fullWidth label="email"/>
         </Box>
