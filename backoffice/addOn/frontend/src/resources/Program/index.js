@@ -1,5 +1,6 @@
 import { PairResourceCreate } from '../../pair';
 import ProgramEdit from './ProgramEdit';
+import ProgramShow from './ProgramShow';
 import ProgramList from './ProgramList';
 import ProgramIcon from '@material-ui/icons/AccountTree';
 
@@ -8,6 +9,7 @@ export default {
       list: ProgramList,
       create: PairResourceCreate,
       edit: ProgramEdit,
+      show: ProgramShow,
       icon: ProgramIcon,
       options: {
         label: 'Programmes'

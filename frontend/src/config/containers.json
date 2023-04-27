@@ -4,7 +4,7 @@
     "name": "faq",
     "resource": "opal:FAQ"
   },
-  "page": {
+  "pages": {
     "slug": "pages",
     "name": "pages",
     "resource": "semapps:Page"

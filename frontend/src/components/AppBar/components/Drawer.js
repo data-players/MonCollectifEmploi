@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   },
   titleContainer: {
     padding: '92px 16px 32px',
-    textTransform: 'uppercase',
+    // textTransform: 'uppercase',
     '& .MuiTypography-root': {
       fontWeight: 600,
       color: theme.color.white
@@ -78,7 +78,7 @@ export default function Drawer({ openContactForm }) {
     >
       <CloseIcon className={classes.closeIcon} fontSize={'large'} />
       <Box className={classes.titleContainer}>
-        <Typography component="h1" variant="h4">MonCollectifEmploi</Typography>
+        <Typography variant="h3">Mon Collectif Emploi</Typography>
       </Box>
       <List>
         <ListItem button component={Link} to={'/'}>
@@ -87,8 +87,11 @@ export default function Drawer({ openContactForm }) {
         <ListItem button component={Link} to={'/FAQ'}>
           <ListItemText primary={'FAQ'} />
         </ListItem>
-        <ListItem button component={Link} to={'/Page'}>
+        <ListItem button component={Link} to={'/Page/mentions-legales'}>
           <ListItemText primary={'Mentions Légales'} />
+        </ListItem>
+        <ListItem button component={Link} to={'/Call'}>
+          <ListItemText primary={'appeler un humain'} />
         </ListItem>
         <ListItem
           button

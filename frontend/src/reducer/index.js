@@ -22,7 +22,7 @@ const initialState = {
     programs: true,
     structures: true,
     faq: true,
-    page: true,
+    pages: true,
     trainingSites: true
   },
   startOfLoading: 0,
@@ -85,7 +85,7 @@ const reducer = (state = initialState, action = {}) => {
         })
       }
 
-      console.log('GET_RESOURCE_VALUES',action.resourceValues,action.container.name);
+      // console.log('GET_RESOURCE_VALUES',action.resourceValues,action.container.name);
       return {
         ...state,
         resourceValues: {

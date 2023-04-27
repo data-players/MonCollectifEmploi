@@ -181,7 +181,7 @@ export const ProgramEdit = props => {
         <ReferenceArrayInput source="opal:hasFindingHelpGoals" reference="FindingHelpGoal" fullWidth validate={validateMultiple}disabled={lock} >
           <SelectArrayInput optionText="pair:label" />
         </ReferenceArrayInput>
-        <BooleanInput source="opal:noIdea" defaultValue={false} fullWidth validate={[required()]} disabled={lock}/>
+        {/* <BooleanInput source="opal:noIdea" defaultValue={false} fullWidth validate={[required()]} disabled={lock}/> */}
       </FormTab>
     </TabbedForm>
   </Edit>

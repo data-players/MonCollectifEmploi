@@ -13,7 +13,7 @@ import {ReferenceField} from '@semapps/field-components';
 import {
   Datagrid,
   TextField,
-  EditButton
+  ShowButton
 } from 'react-admin';
 
 
@@ -31,13 +31,12 @@ const OrganizationList = props => {
         perPage: 25,
         list: (
 
-          <Datagrid>
+          <Datagrid rowClick="show">
               <TextField source="pair:label" />
               <TextField source="pair:description" />
               <ReferenceField reference="DataSource" source="aurba:hasDataSource">
                 <TextField source="pair:label" />
               </ReferenceField>
-              <EditButton />
           </Datagrid>
         )
       },

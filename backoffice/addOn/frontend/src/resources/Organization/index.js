@@ -1,5 +1,6 @@
 import { PairResourceCreate } from '../../pair';
 import OrganizationEdit from './OrganizationEdit';
+import OrganizationShow from './OrganizationShow';
 import OrganizationList from './OrganizationList';
 import HomeIcon from '@material-ui/icons/Home';
 
@@ -8,6 +9,7 @@ export default {
       list: OrganizationList,
       create: PairResourceCreate,
       edit: OrganizationEdit,
+      show: OrganizationShow,
       icon: HomeIcon,
       options: {
         label: 'Structures'
@@ -37,6 +39,7 @@ export default {
         'pair:depictedBy': 'Logo',
         'pair:phone': 'Téléphone',
         'pair:e-mail': 'E-mail',
+        'pair:offers': 'Programmes',
         'pair:webPage': 'Site internet',
         'opal:socialNetworks': 'Réseaux sociaux',
         'pair:hasLocation.pair:hasPostalAddress.pair:addressZipCode':'code postale',

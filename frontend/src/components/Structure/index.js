@@ -93,7 +93,11 @@ const Structure = ({ loading, programs, structure, loadData }) => {
     loadData('structures');
   }, [])
   console.log('structure',structure);
-  structure['opal:socialNetworks']=structure['opal:socialNetworks']?Array.isArray(structure['opal:socialNetworks'])?structure['opal:socialNetworks']:[structure['opal:socialNetworks']]:undefined
+  if(structure){
+    structure['opal:socialNetworks']=structure['opal:socialNetworks']?Array.isArray(structure['opal:socialNetworks'])?structure['opal:socialNetworks']:[structure['opal:socialNetworks']]:undefined
+    
+  }
+  // structure['opal:socialNetworks']=structure['opal:socialNetworks']?Array.isArray(structure['opal:socialNetworks'])?structure['opal:socialNetworks']:[structure['opal:socialNetworks']]:undefined
   return (
     <>
       { loading &&

@@ -12,7 +12,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ReactMarkdown from 'react-markdown';
 import AppBar from '../../containers/AppBar';
 import Loading from '../Loading';
-import PhoneDialog from './components/PhoneDialog';
+import PhoneDialog from '../PhoneDialog';
 
 const useStyles = makeStyles(theme => ({
   mainContainer: {

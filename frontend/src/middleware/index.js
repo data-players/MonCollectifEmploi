@@ -34,10 +34,12 @@ const middleware = (store) => (next) => (action) => {
   }
 
   const fetchContainer = async (containerName, type) => {
+    console.log('containers',containers)
     if (! containers[containerName]) {
       return;
     }
     const container = containers[containerName];
+
     let json;
     if (container.mode!='LDP'){
       let sparqljsParams = {

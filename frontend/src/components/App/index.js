@@ -9,6 +9,7 @@ import Search from '../../containers/Search';
 import Program from '../../containers/Program';
 import Structure from '../../containers/Structure';
 import Page from '../../containers/Page';
+import Call from '../../containers/Call';
 
 
 const App = ({ loading }) => {
@@ -18,7 +19,8 @@ const App = ({ loading }) => {
         <Route exact path="/" component={Start} />
         <Route exact path="/Contact" component={Contact} />
         <Route exact path="/FAQ" component={FAQ} />
-        <Route exact path="/Page" component={Page} />
+        <Route exact path="/Page/:slug" component={Page} />
+        <Route exact path="/Call/" component={Call} />
         <Route exact path="/Recherche" component={Search} />
         <Route exact path="/programmes/:slug" component={Program} />
         <Route exact path="/structures/:slug" component={Structure} />

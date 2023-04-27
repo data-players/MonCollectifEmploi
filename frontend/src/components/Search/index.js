@@ -16,6 +16,7 @@ import AppBar from '../../containers/AppBar';
 import Loading from '../Loading';
 import Icon from './components/Icon';
 import NextButton from './components/NextButton';
+import SosButton from './../SosButton.js';
 import ResultCard from './components/ResultCard';
 import ResultStepTitle from './components/ResultStepTitle';
 
@@ -485,6 +486,10 @@ const Search = ({
                               </List>
                             </Box>
                           }
+                          { isChoice && 
+                            <SosButton/>
+
+                          }
                           { ( isMultiple || currentSelectedValueExist || ! field.required ) &&
                             <NextButton
                               field= {field}
@@ -511,6 +516,7 @@ const Search = ({
               <Box>
                 { results &&
                   <Box>
+                    <SosButton/>
                     { results.length === 0 &&
                       <Box p={3}>
                         <p>Aucun résultat : Veuillez modifier vos critères de recherche.</p>

@@ -19,21 +19,15 @@ const useStyles = makeStyles(theme => ({
   title: {
     fontSize: 24,
     fontWeight: 600
-  },
-  listItem: {
-    display: 'block !important'
-  },
-  itemTitle: {
-    fontWeight: 600
-  },
+  }
+
 }))
 
-const Page = ( { page, loading, loadPage } ) => {
+const Page = ( { page, loading, loadData } ) => {
   const classes = useStyles();
 
-  console.log('Page',page);
   useEffect( () => {
-    loadPage()
+    loadData('pages')
   }, [])
 
   return (
@@ -45,17 +39,10 @@ const Page = ( { page, loading, loadPage } ) => {
         <>
           <AppBar/>
           <Container className={classes.mainContainer} maxWidth="sm">
-            <Typography component="h1" className={classes.title}></Typography>
-            <List className={classes.list}>
-              { page.map((page, index) => (
-                <ListItem key={index} className={classes.listItem}>
-                  <Typography component="h2" className={classes.itemTitle}>{page['semapps:title']}</Typography>
-                  <Typography component="div" className={classes.description}>
-                    <ReactMarkdown children={page['semapps:content']} />
-                  </Typography>
-                </ListItem>
-              ))}
-            </List>
+            <Typography variant="h2" className={classes.title}>{page['semapps:title']}</Typography>
+            <Typography component="div" className={classes.description}>
+              <ReactMarkdown children={page['semapps:content']} />
+            </Typography>
           </Container>
         </>
       }
