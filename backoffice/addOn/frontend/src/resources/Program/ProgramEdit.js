@@ -122,7 +122,7 @@ export const ProgramEdit = props => {
         <NumberInput source="opal:numberOfParticipants" fullWidth disabled={lock} />
         <BooleanInput source="opal:financialParticipation" defaultValue={false} fullWidth disabled={lock} />
         <TextInput type="url" source="opal:registerLink" fullWidth disabled={lock} />
-        <ReferenceArrayInput source="opal:hasTrainingMode" reference="TrainingMode" fullWidth validate={[required()]} disabled={lock}>
+        <ReferenceArrayInput source="opal:hasTrainingMode" reference="TrainingMode" fullWidth disabled={lock}>
           <SelectArrayInput optionText="pair:label" />
         </ReferenceArrayInput>
         <Box sx={{ p: 2, mb:2, borderStyle:"solid", borderWidth:"1px"}} fullWidth>
