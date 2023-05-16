@@ -63,7 +63,7 @@ export default {
         'aurba:hasDataSource' : 'source',
         'pair:firstName': 'Prénom',
         'pair:lastName': 'Nom',
-        'pair:description': 'Description',
+        'pair:descriptionMore': 'Description complémentaire',
         'pair:phone': 'Téléphone',
         'pair:e-mail': 'E-mail',
         'opal:civilityTitle': 'Titre de civilité',

@@ -29,12 +29,14 @@ const ProgramFilterSidebar = () => {
           source="aurba:hasDataSource"
           sort={{ field: 'pair:label', order: 'DESC' }}
           limit={100}
+          showCounters={false}
         />
         <ReferenceFilter
           label="Statut de publication"
           reference="PublicationStatus"
-          source="opaline:hasPublicationStatus"
+          source="opal:hasPublicationStatus"
           sort={{ field: 'pair:label', order: 'DESC' }}
+          showCounters={false}
           limit={100}
         />
       </CardContent>

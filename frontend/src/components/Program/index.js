@@ -178,6 +178,9 @@ const Program = ({ loading, program, structure, trainingSite, loadData, openCont
                 <Typography component="div" className={classes.description}>
                   <ReactMarkdown children={program["pair:description"]} />
                 </Typography>
+                <Typography component="div" className={classes.description}>
+                  <ReactMarkdown children={program["pair:descriptionMore"]} />
+                </Typography>
                 <Container className={classes.contactContainer} maxWidth="sm">
                   <Typography component="h2" className={classes.contactTitle}>
                     Prendre contact
