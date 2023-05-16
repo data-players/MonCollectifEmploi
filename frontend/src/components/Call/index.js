@@ -49,7 +49,7 @@ const Call = ({ }) => {
     <>
       <AppBar />
       <Container className={classes.mainContainer} maxWidth="sm">
-        <Typography className={classes.title}>contacter un humain</Typography>
+        <Typography className={classes.title}>Contacter une personne</Typography>
         <Typography variant="h6">
            Vous n’êtes pas seuls, nous sommes là pour vous aider.
         </Typography>

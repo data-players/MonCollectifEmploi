@@ -82,7 +82,7 @@ export default function Drawer({ openContactForm }) {
       </Box>
       <List>
         <ListItem button component={Link} to={'/'}>
-          <ListItemText primary={'Nouvelle recherche'} />
+          <ListItemText primary={'Trouver un accompagnement'} />
         </ListItem>
         <ListItem button component={Link} to={'/FAQ'}>
           <ListItemText primary={'FAQ'} />

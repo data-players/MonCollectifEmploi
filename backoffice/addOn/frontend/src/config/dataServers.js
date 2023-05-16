@@ -1,12 +1,12 @@
 const dataServers = {
-  opaline: {
-    name: 'Opaline',
+  moncollectifcmploi: {
+    name: 'MonCollectifEmploi',
     baseUrl: process.env.REACT_APP_MIDDLEWARE_URL,
     sparqlEndpoint: process.env.REACT_APP_MIDDLEWARE_URL + 'sparql',
     authServer: true,
     default: true,
     containers: {
-      opaline: {
+      moncollectifcmploi: {
         'opal:BusinessCreationGoal': ['/business-creation-goals'],
         'opal:Configuration': ['/configurations'],
         'opal:ContactPerson': ['/contact-persons'],
@@ -18,6 +18,7 @@ const dataServers = {
         'opal:TrainingGoal': ['/training-goals'],
         'opal:TrainingMode': ['/training-modes'],
         'opal:TrainingSite': ['/training-sites'],
+        'opal:PublicationStatus': ['/publication-status'],
         'opal:Program': ['/programs'],
         'pair:Organization': ['/organizations'],
         'semapps:Page': ['/pages'],

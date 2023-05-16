@@ -27,7 +27,13 @@ const ProgramFilterSidebar = () => {
           label="Source de données"
           reference="DataSource"
           source="aurba:hasDataSource"
-          inverseSource="aurba:dataSourceOf"
+          sort={{ field: 'pair:label', order: 'DESC' }}
+          limit={100}
+        />
+        <ReferenceFilter
+          label="Statut de publication"
+          reference="PublicationStatus"
+          source="opaline:hasPublicationStatus"
           sort={{ field: 'pair:label', order: 'DESC' }}
           limit={100}
         />

@@ -33,7 +33,7 @@ const SosButton = ({onClick }) => {
   return (
     <Box className={classes.sosButtonContainer}>
         <Button className={classes.button} href="Call">
-          <span>Appeler un humain</span>
+          <span>Contacter une personne</span>
         </Button>
     </Box>
 

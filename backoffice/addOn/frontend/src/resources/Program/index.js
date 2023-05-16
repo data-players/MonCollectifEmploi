@@ -67,6 +67,7 @@ export default {
         'pair:phone': 'Téléphone',
         'pair:e-mail': 'E-mail',
         'opal:civilityTitle': 'Titre de civilité',
+        'opal:hasPublicationStatus':'Statut de publication'
       }
     }
   }

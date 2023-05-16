@@ -17,3 +17,4 @@ export { default as BusinessCreationGoal } from './Concept/BusinessCreationGoal'
 export { default as JobSearchGoal } from './Concept/JobSearchGoal';
 export { default as FindingHelpGoal } from './Concept/FindingHelpGoal';
 export { default as TrainingGoal } from './Concept/TrainingGoal';
+export { default as PublicationStatus } from './Concept/PublicationStatus';

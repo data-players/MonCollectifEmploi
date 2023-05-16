@@ -132,6 +132,11 @@ module.exports = [
     newResourcesPermissions: writePermissionsToCreator
   },
   {
+    path: '/publication-status',
+    acceptedTypes: ['opal:PublicationStatus'],
+    newResourcesPermissions: writePermissionsToCreator
+  },
+  {
     path: '/training-sites',
     acceptedTypes: ['opal:TrainingSite'],
     dereference: ['pair:hasLocation/pair:hasPostalAddress'],

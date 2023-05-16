@@ -89,6 +89,7 @@ export const ProgramEdit = props => {
             }}/>
         </ReferenceInput>
         <MarkdownInput source="pair:description" multiline fullWidth readOnly={lock}/>
+        <MarkdownInput source="pair:descriptionMore" multiline fullWidth readOnly={lock}/>
         <NumberInput source="opal:minimumAge" fullWidth disabled={lock}/>
         <NumberInput source="opal:maximumAge" fullWidth disabled={lock}/>
         <ReferenceArrayInput
@@ -126,11 +127,11 @@ export const ProgramEdit = props => {
         </ReferenceArrayInput>
         <Box sx={{ p: 2, mb:2, borderStyle:"solid", borderWidth:"1px"}} fullWidth>
           <Typography variant="h6">Personne contact</Typography>
-          <TextInput source="opal:civilityTitle" fullWidth label="civilité" />
-          <TextInput source="pair:firstName" fullWidth label="prénom" />
-          <TextInput source="pair:lastName" fullWidth label="nom" />
-          <TextInput source="pair:phone" fullWidth label="téléphone" />
-          <TextInput source="pair:e-mail" fullWidth label="email"/>
+          <TextInput source="opal:civilityTitle" fullWidth label="civilité" disabled={lock}/>
+          <TextInput source="pair:firstName" fullWidth label="prénom" disabled={lock}/>
+          <TextInput source="pair:lastName" fullWidth label="nom" disabled={lock}/>
+          <TextInput source="pair:phone" fullWidth label="téléphone" disabled={lock}/>
+          <TextInput source="pair:e-mail" fullWidth label="email" disabled={lock}/>
         </Box>
         {/* { organization &&
           <ReferenceInput
@@ -145,7 +146,7 @@ export const ProgramEdit = props => {
         } */}
         <Box sx={{ p: 2, mb:2, borderStyle:"solid", borderWidth:"1px"}} fullWidth>
           <Typography variant="h6">Lieux de formation</Typography>
-          <PairLocationInput source="pair:hasLocation" fullWidth validate={[required()]} label="adresse"/>
+          <PairLocationInput source="pair:hasLocation" fullWidth label="adresse" disabled={lock}/>
           {record&&record['pair:hasLocation']&&
               <TextInput source="pair:hasLocation.pair:hasPostalAddress.pair:addressZipCode" fullWidth disabled={true} label="code postale"/>
           }
@@ -163,6 +164,9 @@ export const ProgramEdit = props => {
         } */}
         <ReferenceInput reference="DataSource" fullWidth source="aurba:hasDataSource" allowEmpty disabled={lock}>
           <SelectInput optionText="pair:label" disabled={lock}/>
+        </ReferenceInput>
+        <ReferenceInput source="opal:hasPublicationStatus" reference="PublicationStatus" fullWidth >
+          <SelectInput optionText="pair:label" />
         </ReferenceInput>
         {lock &&
           <BooleanInput source="aurba:externalDeleted" disabled={true} />

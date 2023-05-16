@@ -65,6 +65,10 @@
       "@type": "@id"
     },
 
+    "opal:hasPublicationStatus": {
+      "@type": "@id"
+    },
+
     "aurba:hasDataSource": {
       "@type": "@id"
     },
