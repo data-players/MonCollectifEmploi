@@ -193,7 +193,7 @@ const Search = ({
       return;
     }
     // console.log('findResults',selectedValues);
-    let results = [resourceValues['programs'].filter(p=>p['opal:PublicationStatus'].includes('modere-positivement')),resourceValues['structures']].flat();
+    let results = [resourceValues['programs'].filter(p=>p['opal:hasPublicationStatus'].includes('modere-positivement')),resourceValues['structures']].flat();
     // console.log(`resourceValues['programs']`,resourceValues['programs'])
     let searchSynthesys={};
     selectedValues.forEach(sv => {
