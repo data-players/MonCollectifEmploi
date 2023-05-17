@@ -51,7 +51,16 @@ const Search = ({
   const [checked, setChecked] = useState([]);
   const [textFieldValue, setTextFieldValue] = useState('');
 
-  const { trackPageView, trackEvent, trackSiteSearch } = useMatomo()
+  const { trackPageView, trackEvent, trackSiteSearch } = useMatomo();
+
+
+  const chosenField = selectedValues.map(v=>v.value).find(v=>v.type=='chosen-field')?.label;
+
+  if(results.length>0){
+    resultsByStructure.sort((a,b)=>a['aurba:hasDataSource']?.includes('mon-collectif-emploi')?-1:+1);
+  }
+
+
 
   let selectedFieldValues = null;
   if (selectedField?.name) {
@@ -193,9 +202,7 @@ const Search = ({
       return;
     }
     // console.log('findResults',selectedValues);
-    const tmpsTestStatus = resourceValues['programs'].filter(p=>p['opal:hasPublicationStatus'].includes('modere-positivement'));
-    console.log('tmpsTestStatus',tmpsTestStatus)
-    let results = [resourceValues['programs'].filter(p=>p['opal:hasPublicationStatus'].includes('modere-positivement')),resourceValues['structures']].flat();
+    let results = [resourceValues['programs'].filter(p=>p['opal:hasPublicationStatus']?.includes('modere-positivement')),resourceValues['structures']].flat();
     // console.log(`results`,results)
     let searchSynthesys={};
     selectedValues.forEach(sv => {
@@ -526,6 +533,7 @@ const Search = ({
                     }
                     <Box p={3}>
                       <ResultStepTitle
+                        subTitleText={chosenField}
                         length={resultsByStructure.length}
                         titleClassName={classes.stepTitle}
                         subTitleClassName={classes.stepSubtitle}
@@ -543,6 +551,7 @@ const Search = ({
                             id={result.id}
                             label={result.label}
                             depictedBy={result["pair:depictedBy"]}
+                            source={result["aurba:hasDataSource"]}
                           />
                         </ListItem>
                       )) }

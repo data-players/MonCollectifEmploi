@@ -52,15 +52,12 @@ export const OrganizationEdit = props => {
             <TextInput source="pair:hasLocation.pair:hasPostalAddress.pair:addressZipCode" fullWidth disabled={true} />
         } */}
         <MarkdownInput source="pair:description" multiline fullWidth validate={[required()]} readOnly={lock}/>
-        {!lock &&
-          <ImageInput source="pair:depictedBy" accept="image/*" disabled={lock}>
-            <ImageField source="src" disabled={lock}/>
+
+          <ImageInput source="pair:depictedBy" accept="image/*">
+            <ImageField source="src"/>
           </ImageInput>
-        }
-        {lock &&
-          <ImageField source="pair:depictedBy"/>
-        }
-        <ArrayInput source="opal:socialNetworks" disabled={lock}>
+
+        <ArrayInput source="opal:socialNetworks">
           <SimpleFormIterator>
             <TextInput type="url" label="url"/>
           </SimpleFormIterator>

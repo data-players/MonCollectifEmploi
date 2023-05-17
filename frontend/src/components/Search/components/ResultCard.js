@@ -42,10 +42,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ResultCard( {id, label, depictedBy}) {
+export default function ResultCard( {id, label, depictedBy, source}) {
   const classes = useStyles();
+  const isMonCollectifEmploiSource = source.includes('mon-collectif-emploi');
   return (
     <Card sx={{ minWidth: 275 }} className={classes.mainContainer}>
+      {isMonCollectifEmploiSource&&
+        <CardContent>
+          <img src={process.env.PUBLIC_URL + "collectif-emploi.png"} height='30' alt="Logo collectif emploi" />
+        </CardContent>
+      }
       <CardContent>
         <Grid container spacing={1}>
           <Grid item xs={4} container={true} className={classes.flexCenter}>

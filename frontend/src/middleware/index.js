@@ -104,7 +104,7 @@ const middleware = (store) => (next) => (action) => {
       let generator = new SparqlGenerator({});
       // console.log('sparqljsParams', container,sparqljsParams)
       const sparqljsQuery = generator.stringify(sparqljsParams);
-      console.log('sparqljsQuery',sparqljsQuery)
+      // console.log('sparqljsQuery',sparqljsQuery)
       const response  = await fetch(
         process.env.REACT_APP_MIDDLEWARE_URL + 'sparql', {
           method: 'POST',
