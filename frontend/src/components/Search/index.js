@@ -193,8 +193,10 @@ const Search = ({
       return;
     }
     // console.log('findResults',selectedValues);
+    const tmpsTestStatus = resourceValues['programs'].filter(p=>p['opal:hasPublicationStatus'].includes('modere-positivement'));
+    console.log('tmpsTestStatus',tmpsTestStatus)
     let results = [resourceValues['programs'].filter(p=>p['opal:hasPublicationStatus'].includes('modere-positivement')),resourceValues['structures']].flat();
-    // console.log(`resourceValues['programs']`,resourceValues['programs'])
+    // console.log(`results`,results)
     let searchSynthesys={};
     selectedValues.forEach(sv => {
       if (sv.field.type !== 'field-choice' || sv.value.type === 'no-choice') {
