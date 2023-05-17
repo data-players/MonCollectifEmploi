@@ -168,6 +168,7 @@ export const ProgramEdit = props => {
         <ReferenceInput source="opal:hasPublicationStatus" reference="PublicationStatus" fullWidth >
           <SelectInput optionText="pair:label" />
         </ReferenceInput>
+        <MarkdownInput source="opal:publicationComment" multiline fullWidth/>
         {lock &&
           <BooleanInput source="aurba:externalDeleted" disabled={true} />
         }

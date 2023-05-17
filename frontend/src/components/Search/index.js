@@ -21,6 +21,7 @@ import ResultCard from './components/ResultCard';
 import ResultStepTitle from './components/ResultStepTitle';
 
 import { useMatomo } from '@datapunt/matomo-tracker-react'
+import { PublicationStatus } from '../../../../backoffice/addOn/frontend/src/resources';
 
 
 const Search = ({
@@ -193,7 +194,7 @@ const Search = ({
       return;
     }
     // console.log('findResults',selectedValues);
-    let results = [resourceValues['programs'],resourceValues['structures']].flat();
+    let results = [resourceValues['programs'].filter(p=>p['opal:PublicationStatus'].includes('modere-positivement')),resourceValues['structures']].flat();
     // console.log(`resourceValues['programs']`,resourceValues['programs'])
     let searchSynthesys={};
     selectedValues.forEach(sv => {
