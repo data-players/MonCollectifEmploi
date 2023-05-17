@@ -21,7 +21,6 @@ import ResultCard from './components/ResultCard';
 import ResultStepTitle from './components/ResultStepTitle';
 
 import { useMatomo } from '@datapunt/matomo-tracker-react'
-import { PublicationStatus } from '../../../../backoffice/addOn/frontend/src/resources';
 
 
 const Search = ({
