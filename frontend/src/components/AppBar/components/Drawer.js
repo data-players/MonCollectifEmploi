@@ -91,7 +91,7 @@ export default function Drawer({ openContactForm }) {
           <ListItemText primary={'Mentions Légales'} />
         </ListItem>
         <ListItem button component={Link} to={'/Call'}>
-          <ListItemText primary={'appeler un humain'} />
+          <ListItemText primary={'contacter une personne'} />
         </ListItem>
         <ListItem
           button

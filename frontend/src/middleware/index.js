@@ -34,7 +34,7 @@ const middleware = (store) => (next) => (action) => {
   }
 
   const fetchContainer = async (containerName, type) => {
-    console.log('containers',containers)
+    // console.log('containers',containers)
     if (! containers[containerName]) {
       return;
     }

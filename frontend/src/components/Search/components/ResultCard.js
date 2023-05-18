@@ -19,9 +19,11 @@ const useStyles = makeStyles((theme) => ({
   },
   imageContainer: {
     height: 64,
+    width : '100%',
     textAlign: 'center',
     '& img': {
-      height: '100%'
+      height: '100%',
+      objectFit : 'contain'
     }
   },
   textContainer: {

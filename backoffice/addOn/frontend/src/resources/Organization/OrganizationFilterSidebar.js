@@ -28,7 +28,7 @@ const OrganizationFilterSidebar = () => {
           label="Source de données"
           reference="DataSource"
           source="aurba:hasDataSource"
-          inverseSource="aurba:dataSourceOf"
+          showCounters={false}
           sort={{ field: 'pair:label', order: 'DESC' }}
           limit={100}
         />
