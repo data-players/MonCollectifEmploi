@@ -164,7 +164,27 @@ const useStyles = makeStyles(theme => ({
   },
   resultListItem: {
     paddingBottom: '2rem !important'
-  }
+  },
+  formationButtonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 8,
+    paddingBottom: 8,
+    backgroundColor: theme.color.white,
+    '@media(min-height:600px)': {
+      paddingTop: 8,
+      paddingBottom: 8,
+    }
+  },
+  formationButton: {
+    width: '100%',
+    maxWidth: 'unset',
+    height: 50,
+    boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+    wordBreak: 'break-word',
+    lineHeight: '125%'
+  },
 }));
 
 export default useStyles;

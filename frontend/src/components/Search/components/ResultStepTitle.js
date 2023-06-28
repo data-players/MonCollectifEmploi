@@ -4,7 +4,7 @@ import { Typography } from '@material-ui/core';
 const EndResultSubtitle = ({ subTitleClassName,subTitleText }) => (
   <>
     <br/>
-    <span className={subTitleClassName}>pour vous aider au <strong>{subTitleText}</strong></span>
+    <span className={subTitleClassName}>pour vous aider : <strong>{subTitleText}</strong></span>
   </>
 )
 

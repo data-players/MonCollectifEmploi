@@ -496,7 +496,14 @@ const Search = ({
                             </Box>
                           }
                           { isChoice && 
-                            <SosButton/>
+                            <>
+                              <Box className={classes.formationButtonContainer}>
+                                <Button className={classes.formationButton} href="Page/formation">
+                                  <span>Besoin de formation</span>
+                                </Button>
+                              </Box>
+                              <SosButton/>
+                            </>
 
                           }
                           { ( isMultiple || currentSelectedValueExist || ! field.required ) &&
@@ -526,6 +533,8 @@ const Search = ({
                 { results &&
                   <Box>
                     <SosButton/>
+
+                  
                     { results.length === 0 &&
                       <Box p={3}>
                         <p>Aucun résultat : Veuillez modifier vos critères de recherche.</p>

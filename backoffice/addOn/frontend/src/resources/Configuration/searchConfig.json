@@ -30,24 +30,11 @@
         },{
           "type": "chosen-field",
           "parent": "goal",
-          "name": "opal:hasTrainingGoals",
-          "label": "Formation",
-          "title": "Précisez vos besoins de <strong>formation</strong>...",
-          "required": true
-        },{
-          "type": "chosen-field",
-          "parent": "goal",
           "name": "opal:hasFindingHelpGoals",
           "label": "Accompagnement",
           "title": "Dîtes nous en plus ?",
           "multiple": 999,
           "required": true
-        },{
-          "type": "no-choice",
-          "parent": "goal",
-          "name": "opal:noIdea",
-          "label": "Je suis un peu perdu(e)",
-          "fullWidth": true
         }
       ]
     },{
