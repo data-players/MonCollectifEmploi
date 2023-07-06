@@ -204,6 +204,7 @@ const Search = ({
     // console.log('findResults',selectedValues);
     let results = [resourceValues['programs'].filter(p=>p['opal:hasPublicationStatus']?.includes('modere-positivement')),resourceValues['structures']].flat();
     // console.log(`results`,results)
+    console.log('______________ selectedValues',selectedValues);
     let searchSynthesys={};
     selectedValues.forEach(sv => {
       if (sv.field.type !== 'field-choice' || sv.value.type === 'no-choice') {
@@ -214,8 +215,8 @@ const Search = ({
             const value = sv.value.id;
             searchSynthesys[sv.field.label||sv.field.name]=value;
             results = results.filter(result => {
-              const minBoundOk = ! result[minFieldName] || result[minFieldName] <= value;
-              const maxBoundOk = ! result[maxFieldName] || result[maxFieldName] >= value;
+              const minBoundOk = result[minFieldName]!=undefined && result[minFieldName] <= value;
+              const maxBoundOk = result[maxFieldName]!=undefined && result[maxFieldName] >= value;
               return minBoundOk && maxBoundOk;
             })
           break;
@@ -243,6 +244,18 @@ const Search = ({
               }
             })
           break;
+          case 'boolean':
+              searchSynthesys[sv.field.label||sv.field.name]=sv.value.id;
+              results = results.filter(result => {
+                let resultOk = true;
+                // only choice "true" is explicit
+                console.log(sv)
+                if (sv.value.id === true) {
+                  resultOk = (result[sv.field.name] === true); 
+                }
+                return resultOk;
+              })
+          break;
           default:
             let fieldName = sv.field.name;
             if (sv.value.type === 'no-choice') {
@@ -263,13 +276,7 @@ const Search = ({
                 // check if at least one result value matches with one selected value
                 let resultOk = false;
                 resultValues.forEach(rv => {
-                  if (sv.field.type === 'boolean') {
-                    resultOk = true;
-                    // only choice "true" is explicit
-                    if (sv.value.id === true) {
-                      resultOk = rv;
-                    }
-                  } else if (sv.value.type === 'no-choice') {
+                  if (sv.value.type === 'no-choice') {
                     resultOk = rv;
                   } else {
                     if (valueIds.includes(rv)) {

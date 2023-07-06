@@ -232,6 +232,16 @@ const Program = ({ loading, program, structure, trainingSite, loadData, openCont
                       
                       voir l'adresse
                     </Button>
+                    <Button 
+                      variant="contained"
+                      color="primary"
+                      className={classes.addressButton}
+                      href={program["opal:registerLink"]}
+                      target="_blank"
+                      disabled={program["opal:registerLink"] ? false : true}
+                    >
+                      postuler
+                    </Button>
                   </Stack>
                 </Container>
                 { phone &&

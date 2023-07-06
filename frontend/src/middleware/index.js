@@ -34,13 +34,14 @@ const middleware = (store) => (next) => (action) => {
   }
 
   const fetchContainer = async (containerName, type) => {
-    // console.log('containers',containers)
+    // console.log('containerName',containerName)
     if (! containers[containerName]) {
       return;
     }
     const container = containers[containerName];
 
     let json;
+    let compactJson; 
     if (container.mode!='LDP'){
       let sparqljsParams = {
         queryType: 'CONSTRUCT',
@@ -123,7 +124,20 @@ const middleware = (store) => (next) => (action) => {
 
       json = await response.json()
 
-      // console.log('middleware-LOAD_DATA SPARQL', sparqljsQuery);
+      let frame = {
+        ...context,
+        "@type": [container.resource],
+        '@embed': '@never'
+      };
+      if ( container.location === true ) {
+        frame = {
+          ...frame,
+          ...getEmbedFrame(['pair:hasLocation/pair:hasPostalAddress'])
+        };
+      }
+  
+      // console.log( 'frame',frame)
+      compactJson = await jsonld.frame(json, frame, { omitGraph: false });
     }else{
       const response  = await fetch(`${process.env.REACT_APP_MIDDLEWARE_URL}${container.slug}`, {
         method: 'GET',
@@ -134,32 +148,13 @@ const middleware = (store) => (next) => (action) => {
         mode: 'cors'
       });
       json = await response.json();
+      compactJson = {
+        '@context' : json['@context'],
+        '@graph' : json['ldp:contains']
+      }
     }
-
-
-    let frame = {
-      '@context': context,
-      "@type": [container.resource],
-      '@embed': '@never'
-    };
-
-    // console.log('container',container)
-    if ( container.location === true ) {
-      frame = {
-        ...frame,
-        ...getEmbedFrame(['pair:hasLocation/pair:hasPostalAddress'])
-      };
-    }
-
-    // console.log( 'frame',frame)
-
-    const compactJson = await jsonld.frame(json, frame, { omitGraph: false });
-
-    // console.log('compactJson',compactJson);
 
     const data = compactJson['@graph'];
-
-    // console.log('middleware-LOAD_DATA DATA', container, data);
 
     if (data.find(d => d.id === undefined)) {
       console.log('error: data not found', container);
@@ -169,9 +164,8 @@ const middleware = (store) => (next) => (action) => {
         ...d,
         label: d['pair:label']
       }))
-
       // console.log('middleware-LOAD_DATA FORMATED DATA', container, formatedData);
-
+      
       if (type === 'resource') {
         store.dispatch(getResourceValues(container, formatedData));
       } else {
