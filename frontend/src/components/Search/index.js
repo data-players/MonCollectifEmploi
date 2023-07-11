@@ -22,6 +22,8 @@ import ResultStepTitle from './components/ResultStepTitle';
 
 import { useMatomo } from '@datapunt/matomo-tracker-react'
 
+import { getDistance } from 'geolib';
+
 
 const Search = ({
   fieldValues,
@@ -204,9 +206,9 @@ const Search = ({
     // console.log('findResults',selectedValues);
     let results = [resourceValues['programs'].filter(p=>p['opal:hasPublicationStatus']?.includes('modere-positivement')),resourceValues['structures']].flat();
     // console.log(`results`,results)
-    console.log('______________ selectedValues',selectedValues);
+    // console.log('______________ selectedValues',selectedValues);
     let searchSynthesys={};
-    selectedValues.forEach(sv => {
+    for (const sv of selectedValues) {
       if (sv.field.type !== 'field-choice' || sv.value.type === 'no-choice') {
         switch (sv.field.type) {
           case 'range':
@@ -222,15 +224,27 @@ const Search = ({
           break;
           case 'location':
             searchSynthesys[sv.field.label||sv.field.name]=sv.value.id;
-            results = results.filter(result => {
-              // console.log('result',result)
+            results= results.map(result=>{
               const structure = resourceValues['structures'].find(orga => orga['id'] === result["pair:offeredBy"]);
               // let trainingSite = resourceValues['trainingSites']?.find(site => site['id'] === result["pair:offers"]);
               const location = result?.['pair:hasLocation']||structure?.['pair:hasLocation']
+              return {
+                ...result,
+                location
+
+              }
+            })
+
+            results = results.filter(result => {
+              // console.log('result',result)
+              // const structure = resourceValues['structures'].find(orga => orga['id'] === result["pair:offeredBy"]);
+              // let trainingSite = resourceValues['trainingSites']?.find(site => site['id'] === result["pair:offers"]);
+              const location = result.location
               // console.log(`result?.['pair:hasLocation']`,result?.['pair:hasLocation'])
               // if ( ! trainingSite ) {
               //   trainingSite = structure;
               // }
+              // console.log(location)
               if ( ! location
                 || ! location['pair:hasPostalAddress']
                 || ! location['pair:hasPostalAddress']['pair:addressZipCode']
@@ -243,13 +257,34 @@ const Search = ({
                 return false
               }
             })
+            const url =`http://api-adresse.data.gouv.fr/search/?q=${sv.value.id}`;
+            const resultGeo = await fetch(url);
+            const resultGeoJson = await resultGeo.json();
+            const resutGeoDep  = resultGeoJson.features[0];
+            // console.log(resultGeoJson);
+            results = results.map( r => {
+              // console.log('r.location',r.location)
+              return {
+                ...r,
+                distance : getDistance(
+                  { latitude: r.location['pair:latitude'], longitude: r.location['pair:longitude'],},
+                  { latitude: resutGeoDep.geometry.coordinates[1], longitude:resutGeoDep.geometry.coordinates[0]}
+                )
+              }
+            })
+
+            results = results.sort((a, b) => {
+              return a.distance - b.distance
+            })
+            // console.log('ALLO',results)
+
           break;
           case 'boolean':
               searchSynthesys[sv.field.label||sv.field.name]=sv.value.id;
               results = results.filter(result => {
                 let resultOk = true;
                 // only choice "true" is explicit
-                console.log(sv)
+                // console.log(sv)
                 if (sv.value.id === true) {
                   resultOk = (result[sv.field.name] === true); 
                 }
@@ -289,7 +324,10 @@ const Search = ({
             })
         }
       }
-    })
+    }
+    // selectedValues.forEach(sv => {
+
+    // })
     trackSiteSearch({ keyword: JSON.stringify(searchSynthesys),count:results.length})
     // console.log('trackSiteSearch');
     setResults(results);
@@ -510,6 +548,11 @@ const Search = ({
                                 </Button>
                               </Box>
                               <SosButton/>
+                              <Box className={classes.formationButtonContainer}>
+                                <Button className={classes.formationButton} href="FAQ">
+                                  <span>Foire aux questions</span>
+                                </Button>
+                              </Box>
                             </>
 
                           }
