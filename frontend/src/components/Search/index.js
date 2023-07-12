@@ -257,7 +257,7 @@ const Search = ({
                 return false
               }
             })
-            const url =`http://api-adresse.data.gouv.fr/search/?q=${sv.value.id}`;
+            const url =`https://api-adresse.data.gouv.fr/search/?q=${sv.value.id}`;
             const resultGeo = await fetch(url);
             const resultGeoJson = await resultGeo.json();
             const resutGeoDep  = resultGeoJson.features[0];
