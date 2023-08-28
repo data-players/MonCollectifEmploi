@@ -95,8 +95,8 @@ const Structure = ({ loading, programs, structure, loadData }) => {
   console.log('structure',structure);
   if(structure){
     structure['opal:socialNetworks']=structure['opal:socialNetworks']?Array.isArray(structure['opal:socialNetworks'])?structure['opal:socialNetworks']:[structure['opal:socialNetworks']]:undefined
-    
   }
+  const validPrograms = programs.filter(p=>p['opal:hasPublicationStatus']?.includes('modere-positivement'));
   // structure['opal:socialNetworks']=structure['opal:socialNetworks']?Array.isArray(structure['opal:socialNetworks'])?structure['opal:socialNetworks']:[structure['opal:socialNetworks']]:undefined
   return (
     <>
@@ -138,7 +138,7 @@ const Structure = ({ loading, programs, structure, loadData }) => {
                   Les programmes d'accompagnement
                 </Typography>
                 <List>
-                  { programs.map((program, index) => (
+                  { validPrograms.map((program, index) => (
                     <ListItem
                       button key={index}
                       component={Link}
