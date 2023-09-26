@@ -23,6 +23,7 @@ const ResultStepTitle = ({ length, titleClassName, subTitleText, subTitleClassNa
       }
     </Typography>
     <Typography component="h2" >Seules les informations ayant le logo Collectif Emploi sont complètes et vérifiées à ce jour.</Typography>
+    <Typography component="h2" >L’application poursuit son développement afin de vous apporter des résultats de plus en plus précis.</Typography>
    </>
 
 )

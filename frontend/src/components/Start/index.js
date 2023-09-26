@@ -68,7 +68,7 @@ const Start = ({ newSearch }) => {
           <Typography component="h1" variant="h1">Bienvenue sur <br/> Mon Collectif Emploi</Typography>
         </Box>
         <Box className={classes.subTitleContainer}>
-          <Typography component="h2" variant="h2">Accélérer votre retour <br/><strong>à l'emploi !</strong></Typography>
+          <Typography component="h2" variant="h2">Trouver le programme adapté à vos besoins liés<br/><strong>à l'emploi !</strong></Typography>
         </Box>
         <Box className={classes.buttonContainer}>
           <Button
